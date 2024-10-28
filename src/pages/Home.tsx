@@ -9,9 +9,9 @@ const Home = () => {
         <div className="mt-[18%]">
           <HeroTitle />
         </div>
-        <div className="mt-[10%]">
-          {/* <div className="bg-primary rounded-full w-[400px] block"></div> */}
-          <img src={heroimage} alt="Hero Image" />
+        <div className="flex">
+          <div className="bg-primary blur-[250px] absolute rounded-full w-[700px] h-[700px] z-[-100] block"></div>
+          <img className="mt-[15%]" src={heroimage} alt="Hero Image" />
         </div>
       </div>
 
