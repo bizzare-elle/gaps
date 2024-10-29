@@ -14,7 +14,9 @@ const HeroTitle = () => {
       </div>
       <div className="flex gap-x-5">
         <Button>Learn More</Button>
-        <Button variant="outline">Create Account</Button>
+        <Button variant="outline" type="button">
+          Meet The Team
+        </Button>
       </div>
     </div>
   );

@@ -26,7 +26,7 @@ const Footer = () => {
           <div className="border-b h-[100px] w-[70%] flex justify-end items-end gap-x-5">
             <input
               type="text"
-              placeholder="Write your message"
+              placeholder="Write your message"  
               className="bg-transparent outline-none placeholder:text-white font-light text-sm flex-1"
             />
             <span className="text-sm font-medium">Send</span>

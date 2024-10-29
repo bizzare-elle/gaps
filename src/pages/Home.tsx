@@ -1,6 +1,7 @@
 import Navigation from "../components/Navigation";
 import HeroTitle from "../components/HeroTitle";
 import heroimage from "./../images/hero-image.png";
+
 const Home = () => {
   return (
     <div className="h-[100vh] flex flex-col max-w-[1600px] m-auto">
