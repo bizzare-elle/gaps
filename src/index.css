@@ -76,6 +76,6 @@
     @apply text-5xl;
   }
   h4 {
-    @apply text-3xl;
+    @apply text-3xl text-primary font-bold;
   }
 }
