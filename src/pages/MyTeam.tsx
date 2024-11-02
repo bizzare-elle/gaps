@@ -44,10 +44,12 @@ const MyTeam = (): JSX.Element => {
       <div className="w-[700px] text-center flex flex-col gap-y-5">
         <h4>Meet My Team</h4>
         <span>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem iure
-          non voluptates cupiditate labore inventore, vero similique, veniam,
-          laboriosam pariatur exercitationem neque eius delectus natus placeat
-          adipisci sunt totam! Saepe.
+          Here, we introduce you to the talented team behind our innovative
+          platform. Our developers have worked tirelessly to create GAPS,
+          empowering professors through comprehensive assessments and
+          certifications. Get to know the brilliant minds who brought this
+          project to life and their commitment to enhancing educational
+          excellence
         </span>
       </div>
       <div className="flex flex-wrap gap-5 max-w-[1200px] justify-center">
