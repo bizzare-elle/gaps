@@ -1,47 +1,70 @@
+import { Link as ScrollLink } from "react-scroll";
+import { Link as RouterLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import LoginCard from "./LoginCard";
 import icon from "./../images/icon.png";
 import { Button } from "./ui/button";
 import { FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import LoginCard from "./LoginCard";
 
 const navLinks = [
   {
     label: "Home",
-    href: "/",
+    href: "home",
   },
   {
     label: "About Us",
-    href: "/about-us",
+    href: "aboutus",
   },
   {
     label: "Features",
-    href: "/features",
+    href: "features",
   },
   {
     label: "Mission & Vision",
-    href: "/mission-and-vision",
+    href: "missionvision",
   },
 ];
 
 const Navigation = () => {
-  const [loginModal, setLoginModal] = useState<boolean>(false);
+  const [loginModal, setLoginModal] = useState(false);
+  const [navbarQue, setNavbarQue] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setNavbarQue(window.screenY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <div>
-      <nav className="top-0 w-full py-3 flex justify-between items-center">
-        <div className="w-[120px]">
+    <>
+      <nav
+        className={`top-0 w-full py-3 flex justify-between items-center ${
+          navbarQue ? "bg-white/40" : "bg-transparent"
+        }`}
+      >
+        <RouterLink to="home" className="w-[120px]">
           <img src={icon} alt="icon" />
-        </div>
+        </RouterLink>
         <div className="flex items-center gap-x-10">
           <div>
-            <ul className="flex items-center gap-x-10">
-              {navLinks.map((item) => (
-                <li key={item.href} className="text-sm cursor-pointer">
-                  <Link to={item.href}>{item.label}</Link>
-                </li>
+            <div className="flex items-center gap-x-10">
+              {navLinks.map(({ label, href }) => (
+                <ScrollLink
+                  to={href}
+                  smooth={true}
+                  duration={500}
+                  key={href}
+                  className="text-sm cursor-pointer"
+                >
+                  {label}
+                </ScrollLink>
               ))}
-            </ul>
+            </div>
           </div>
           <Button
             className="px-6 rounded-full"
@@ -53,7 +76,7 @@ const Navigation = () => {
         </div>
       </nav>
       {loginModal && <LoginCard />}
-    </div>
+    </>
   );
 };
 
