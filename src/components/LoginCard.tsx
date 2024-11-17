@@ -15,10 +15,15 @@ import { useState } from "react";
 import { TActiveModal } from "../types";
 import SignUpModal from "./SignUpModal";
 import { LuEye, LuEyeOff } from "react-icons/lu";
+import { MdOutlineCancel } from "react-icons/md";
 
-const LoginCard = () => {
+interface Props {
+  closeModal: () => void;
+}
+
+const LoginCard = ({ closeModal }: Props) => {
   const [activeModal, setActiveModal] = useState<TActiveModal>("login");
-  const [show, setShow] = useState<boolean>(false);
+  const [showPass, setShowPass] = useState<boolean>(false);
   return (
     <Overlay>
       {activeModal === "login" && (
@@ -30,8 +35,17 @@ const LoginCard = () => {
         >
           <Card>
             <CardHeader className="text-center">
-              <CardTitle className="text-primary">Login</CardTitle>
-              <CardDescription>Login to your account.</CardDescription>
+              <div className="flex justify-between">
+                <div className="text-start">
+                  <CardTitle className="text-primary">Login</CardTitle>
+                  <CardDescription>Login to your account.</CardDescription>
+                </div>
+                <div>
+                  <button className="flex-1" onClick={closeModal}>
+                    <MdOutlineCancel size={18} />
+                  </button>
+                </div>
+              </div>
             </CardHeader>
             <CardContent>
               <form action="">
@@ -45,11 +59,14 @@ const LoginCard = () => {
                     <input
                       id="password"
                       className="flex-1 outline-none placeholder:text-muted-foreground"
-                      type={show ? "text" : "password"}
+                      type={showPass ? "text" : "password"}
                       placeholder="Enter your password"
                     />
-                    <button onClick={() => setShow(!show)} type="button">
-                      {show ? <LuEye size={18} /> : <LuEyeOff size={18} />}
+                    <button
+                      onClick={() => setShowPass(!showPass)}
+                      type="button"
+                    >
+                      {showPass ? <LuEye size={18} /> : <LuEyeOff size={18} />}
                     </button>
                   </div>
                 </div>
@@ -74,7 +91,10 @@ const LoginCard = () => {
         </motion.div>
       )}
       {activeModal === "signup" && (
-        <SignUpModal login={() => setActiveModal("login")} />
+        <SignUpModal
+          login={() => setActiveModal("login")}
+          closeModal={closeModal}
+        />
       )}
     </Overlay>
   );

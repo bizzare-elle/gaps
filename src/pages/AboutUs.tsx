@@ -1,7 +1,10 @@
 import about from "./../images/about.png";
+import { Link as ScrollLink } from "react-scroll";
 import { Button } from "../components/ui/button";
 
 const AboutUs = () => {
+  const features = "features";
+
   return (
     <div className="h-[70vh] flex max-w-[1600px] m-auto items-center justify-center gap-x-5">
       <div>
@@ -24,7 +27,9 @@ const AboutUs = () => {
           asperiores recusandae dolorum?
         </p>
         <Button className="w-[120px]">
-          <a href="#features">See Features</a>
+          <ScrollLink to={features} smooth={true} duration={300}>
+            See Features
+          </ScrollLink>
         </Button>
       </div>
     </div>

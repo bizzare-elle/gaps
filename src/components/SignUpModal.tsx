@@ -12,12 +12,14 @@ import { Label } from "./ui/label";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
+import { MdOutlineCancel } from "react-icons/md";
 
 interface Props {
   login: () => void;
+  closeModal: () => void;
 }
 
-const SignUpModal = ({ login }: Props) => {
+const SignUpModal = ({ login, closeModal }: Props) => {
   const [pass1, setPass1] = useState<boolean>(false);
   const [pass2, setPass2] = useState<boolean>(false);
 
@@ -30,8 +32,17 @@ const SignUpModal = ({ login }: Props) => {
     >
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="text-primary">Sign Up</CardTitle>
-          <CardDescription>Create an account</CardDescription>
+          <div className="flex justify-between">
+            <div className="text-start">
+              <CardTitle className="text-primary">Sign Up</CardTitle>
+              <CardDescription>Create an account</CardDescription>
+            </div>
+            <div>
+              <button onClick={closeModal}>
+                <MdOutlineCancel size={18} />
+              </button>
+            </div>
+          </div>
         </CardHeader>
         <CardContent>
           <div>

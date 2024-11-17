@@ -13,7 +13,7 @@ const navLinks = [
   },
   {
     label: "About Us",
-    href: "aboutus",
+    href: "aboutUs",
   },
   {
     label: "Features",
@@ -21,31 +21,42 @@ const navLinks = [
   },
   {
     label: "Mission & Vision",
-    href: "missionvision",
+    href: "missionAndVision",
   },
 ];
 
 const Navigation = () => {
   const [loginModal, setLoginModal] = useState(false);
-  const [navbarQue, setNavbarQue] = useState(false);
+  const [navbarVisible, setNavbarVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setNavbarQue(window.screenY > 50);
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        // Scrolling down
+        setNavbarVisible(false);
+      } else {
+        // Scrolling up
+        setNavbarVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [lastScrollY]);
 
   return (
     <>
       <nav
-        className={`top-0 w-full py-3 flex justify-between items-center ${
-          navbarQue ? "bg-white/40" : "bg-transparent"
-        }`}
+        className={`top-0 w-full py-3 flex justify-between items-center transition-transform duration-300 ${
+          navbarVisible ? "translate-y-0" : "-translate-y-full"
+        } ${lastScrollY > 50 ? "" : "bg-transparent"} z-50 `}
       >
         <RouterLink to="home" className="w-[120px]">
           <img src={icon} alt="icon" />
@@ -75,7 +86,7 @@ const Navigation = () => {
           </Button>
         </div>
       </nav>
-      {loginModal && <LoginCard />}
+      {loginModal && <LoginCard closeModal={() => setLoginModal(false)} />}
     </>
   );
 };

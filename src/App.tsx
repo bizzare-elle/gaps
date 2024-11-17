@@ -15,19 +15,19 @@ const App = () => {
       </header>
 
       <main className="flex-grow">
-        <Element name="home">
+        <Element to="home" name="home">
           <Home />
         </Element>
-        <Element name="aboutus">
+        <Element to="aboutUs" name="aboutUs">
           <AboutUs />
         </Element>
-        <Element name="features">
+        <Element to="features" name="features">
           <Features />
         </Element>
-        <Element name="missionvision">
+        <Element to="missionAndVision" name="missionAndVision">
           <MissionAndVision />
         </Element>
-        <Element>
+        <Element to="myTeam" name="myTeam">
           <MyTeam />
         </Element>
       </main>

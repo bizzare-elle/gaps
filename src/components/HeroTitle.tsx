@@ -1,6 +1,10 @@
 import { Button } from "./ui/button";
+import { Link as ScrollLink } from "react-scroll";
 
 const HeroTitle = () => {
+  const myTeam = "myTeam";
+  const aboutUs = "aboutUs";
+
   return (
     <div className="flex flex-col gap-y-[40px] w-[900px] leading-loose">
       <div className="flex flex-col gap-y-3">
@@ -13,9 +17,15 @@ const HeroTitle = () => {
         </span>
       </div>
       <div className="flex gap-x-5">
-        <Button>Learn More</Button>
+        <Button>
+          <ScrollLink to={aboutUs} smooth={true} duration={500}>
+            Learn More
+          </ScrollLink>
+        </Button>
         <Button variant="outline" type="button">
-          Meet The Team
+          <ScrollLink to={myTeam} smooth={true} duration={500}>
+            Meet The Team
+          </ScrollLink>
         </Button>
       </div>
     </div>
